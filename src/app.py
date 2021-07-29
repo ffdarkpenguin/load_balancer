@@ -32,7 +32,6 @@ def validate_parameters():
         usage()
     if param_count == 3:
         if "DOCKER" in environ and environ["DOCKER"] == "True":
-            print("no docker")
             print("While running this app in a Docker container it's not allowed to use output "
                   "parameter.")
             usage()
