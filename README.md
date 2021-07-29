@@ -1,14 +1,14 @@
 
 # Project Load Balancer Simulation
 
-This project to simulate a load balancer test to calculte the cost of running services on miltiple
-configuration. It's main goal is to find the lowest possible cost of running by users twiking it's
-configuration while testing varios scenarios.
+This project simulates a load balancer test to calculte the cost of running services on multiple
+configuration. It's main goal is to find the lowest possible cost of running a given load of service
+by twiking it's configuration while testing various scenarios.
 
 It reads data from a text file containing one interger number per line. The first two numbers
 are used for configuration. All others number are treated as new clients that requested a service
-and so they need to be allocated to a given server. New servers must be launched if all server reached
-they maximun capacity.
+and so they need to be allocated to a given server. New servers must be launched if all running server
+reached they maximun capacity.
 
 The first configuration number is `ttask` which tells the app how many ticks are used per client request.
 The second configuraiton number is `umax` which tells the maximum number of tasks (or clients requests)
@@ -23,7 +23,7 @@ This project was implemented using Python 3.9. Some features used requires at le
 
 First install the requirements creating a virtual environment and stalling the packages in `requirements.txt` file:
 
-    virtualenv -p=python3.9 .venv
+    virtualenv -p python3.9 .venv
     source .venv/bin/activate
     pip install -r requirements.txt
 
@@ -39,22 +39,22 @@ Run the app using the sintaxe: `python src/app <INPUT_FILE> [OUTPUT_FILE]`
 
 `OUTPUT_FILE` is an optional parameter to where the result should be sent. If no output file is provided the result is sent to `sys.stdout`
 
-The app generates a a log file with details of each run: server launched or removed, tasks assigned to a server and removed from a server. Also any predicted error should be logged to this file. Unpredicted errors are printed to `stdout` with the exception back track sent to the log file.
+The app generates a log file with details of each run: server launched or removed, tasks assigned to a server and removed from a server. Also any predicted error will be logged to this file. Unpredicted errors are printed to `stdout` with the exception back track sent to the log file.
 
 ## Config file:
 
 A configuration file was create in python format. The possible configurable values are:
 
     SERVER_COST = 1.0               # Server cost per tick
-    TTASK_MIN = 1                   # Minimal value for ttask
+    TTASK_MIN = 1                   # Minimun value for ttask
     TTASK_MAX = 10                  # Maximun value for ttask
     UMAX_MIN = 1                    # Minimun value for umax
     UMAX_MAX = 10                   # Maximun value for umax
-    OVERWRITE_DEST_FILE = True      # Defines if the out_file (if informed) should be orverwriten if if exists
+    OVERWRITE_DEST_FILE = True      # Defines if the out_file (if informed) can be orverwriten if it exists
 
 ## Containers:
 
-If you don't have `Python 3.8+` in you system but have docker installed you can run the application and tests using docker. At this point you can not set an output if you running the app using container. The results are going to be printed to `stdout` and you should redirect the result to a file if necessary.
+If you don't have `Python 3.8+` in you system but have docker installed you can run the application and tests using docker. At this point you can not set an output file if you running the app using container. The results are going to be printed to `stdout` and you should redirect the result to a file if necessary.
 
 To build an image for later use run:
 
@@ -76,9 +76,9 @@ To run the app with another file that exists in the container image (the file wa
     docker container run --rm load_balancer <INPUT_FILE>
 
 
-To pass an input file to the container at run time use volumes:
+To pass an input file not in the image to the container at run time use volumes:
 
-    docker container run --rm -v PATH/TO/MY/INPUT/FILE.TXT:/app/clients.txt load_balancer
+    docker container run --rm -v /FULL/PATH/TO/MY/INPUT/FILE.TXT:/app/clients.txt load_balancer
 
 This will "replace" the file /app/clients.txt with your new file. As the file `app/clients.txt` is the default parameter for the app you dont need to inform it.
 
