@@ -1,9 +1,7 @@
 """Tests for src.app.py"""
 import os
 
-from mock import patch
-
-from src.app import usage, validate_parameters, main, logger, environ
+from src.app import usage, validate_parameters, main, logger
 from src.error import BalancerError
 
 # pylint: disable=missing-function-docstring
