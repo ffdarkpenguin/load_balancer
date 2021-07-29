@@ -8,7 +8,7 @@ by twiking it's configuration while testing various scenarios.
 It reads data from a text file containing one interger number per line. The first two numbers
 are used for configuration. All others number are treated as new clients that requested a service
 and so they need to be allocated to a given server. New servers must be launched if all running server
-reached they maximun capacity.
+reached their maximun capacity.
 
 The first configuration number is `ttask` which tells the app how many ticks are used per client request.
 The second configuraiton number is `umax` which tells the maximum number of tasks (or clients requests)
@@ -62,7 +62,7 @@ To build an image for later use run:
 
 The steps below assumes you built an image with the command above.
 
-You can run the app with the default sample `clients.txt` include in this source code just typing:
+You can run the app with the default sample `clients.txt` included in this source code just typing:
 
     docker container run --rm load_balancer
 
