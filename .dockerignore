@@ -1,0 +1,6 @@
+out.txt
+*.log
+__pycache__
+.venv
+.vscode
+.pytest_cache

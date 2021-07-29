@@ -1,0 +1,8 @@
+"""Configuration file"""
+
+SERVER_COST = 1.0
+TTASK_MIN = 1
+TTASK_MAX = 10
+UMAX_MIN = 1
+UMAX_MAX = 10
+OVERWRITE_DEST_FILE = True
